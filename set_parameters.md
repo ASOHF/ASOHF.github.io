@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Setting the parameters of ASOHF
+title: Setting the parameters
 nav_order: 3
 ---
 

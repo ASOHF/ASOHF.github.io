@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Setting the parameters of ASOHF
+title: Outputs structure
 nav_order: 4
 ---
 
