@@ -31,9 +31,9 @@ Besides the folders described above, the code also requires you to create a `sim
 ```bash 
 ln -s /path/to/your/simulation ./simulation
 ```
-<div class="code-example" markdown="1">MASCLET users {: .label .label-green }</div>
+#### MASCLET users
 
-Note that, if using the MASCLET native reader (FLAG_MASCLET=1, see [the section on input data](input_data)), the corresponding folder is `simu_masclet`.
+Note that, if using the MASCLET native reader (```FLAG_MASCLET=1```, see [the section on input data](input_data)), the corresponding folder is `simu_masclet`.
 
 ### Compilation
 
@@ -55,7 +55,6 @@ For running ASOHF, you may want to use a shell script containing all the necessa
 
 ```bash
 >> cat run.sh
-
 #!/bin/bash
 
 export OMP_NUM_THREADS=24 # number of threads
@@ -67,5 +66,4 @@ export KMP_BLOCKTIME=1000000 #very large number
 ulimit -c 0 # avoid core dumps
 
 ./asohf.x > asohf.out
-
 ```
