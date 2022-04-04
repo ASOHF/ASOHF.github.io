@@ -31,7 +31,7 @@ Besides the folders described above, the code also requires you to create a `sim
 ```bash 
 ln -s /path/to/your/simulation ./simulation
 ```
-#### MASCLET users
+#### MASCLET users:
 
 Note that, if using the MASCLET native reader (```FLAG_MASCLET=1```, see [the section on input data](input_data)), the corresponding folder is `simu_masclet`.
 
