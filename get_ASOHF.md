@@ -39,12 +39,12 @@ Note that, if using the MASCLET native reader (```FLAG_MASCLET=1```, see [the se
 
 ASOHF can be compiled either with the GNU (`gfortran`) or with the Intel (`ifort`) Fortran Compilers. The following compilation options work well for us using gfortran-11 and ifort 2018 on several machines:
 
-GNU:
+#### GNU:
 ```bash
 gfortran -O3 -march=native -fopenmp -mcmodel=medium -funroll-all-loops -fprefetch-loop-arrays -mieee-fp -ftree-vectorize particles.f asohf.f -o asohf.x
 ```
 
-Intel:
+#### Intel:
 ```bash
 ifort -O3 -mcmodel=medium -qopenmp -shared-intel -fp-model consistent -ipo -xHost asohf.f -o asohf_sa.x
 ```
