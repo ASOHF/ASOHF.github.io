@@ -22,17 +22,17 @@ These pages contain the documentation of the code, including the input/output fo
 
 ASOHF has been developed at the Computational Cosmology Group of [Universitat de València](https://www.uv.es), with financial support from the Spanish [Ministerio de Ciencia e Innovación](https://www.ciencia.gob.es/), via the project "Real and virtual galaxies: Simulations" (PID2019-107427GB-C33); and by Generalitat Valenciana [Conselleria d'Innovació, Universitats, Ciència i Societat Digital](https://innova.gva.es/es/web/ciencia), through the project "Relativistic Astrophysics, Computational Cosmology and Gravitational Wave Astronomy" (PROMETEO/2019/071).
 
-#### Disclaimer
+### Disclaimer
 
 ASOHF and all its associated codes are a non-profit, open source tool developed in the context of a research project. While we share it in the hope that it will be useful, it comes without any guarantee to function. Please, be sure to always check the consistency of your results.
 
-#### Contact
+### Contact
 
 If you have any questions, suggestions or want to contribute to ASOHF, please contact us at david.valles-perez@uv.es.
 
-#### Referencing ASOHF
+### Referencing ASOHF
 
 If publishing scientific results using ASOHF, please consider citing both the original paper and the revision+public release paper:
 
 - Planelles, S. & Quilis, V., "ASOHF: a new adaptive spherical overdensity halo finder", [A&A 519 A94](https://www.aanda.org/articles/aa/full_html/2010/11/aa14214-10/aa14214-10.html) (2010) [(arXiv link)](https://arxiv.org/abs/1006.3205)
-- Vallés-Pérez, D., Planelles, S. & Quilis, V., "The halo finding problem revisited: a deep revision of the ASOHF code", A&A submitted (2022), (arXiv link)
+- Vallés-Pérez, D., Planelles, S. & Quilis, V., "The halo finding problem revisited: a deep revision of the ASOHF code", A&A submitted (2022) (arXiv link)
