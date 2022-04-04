@@ -28,11 +28,11 @@ ASOHF and all its associated codes are a non-profit, open source tool developed 
 
 ### Contact
 
-If you have any questions, suggestions or want to contribute to ASOHF, please contact us at david.valles-perez@uv.es.
+If you have any questions, suggestions or want to contribute to ASOHF, please contact us at [this email address](mailto:david.valles-perez@uv.es).
 
 ### Referencing ASOHF
 
 If publishing scientific results using ASOHF, please consider citing both the original paper and the revision+public release paper:
 
-- Planelles, S. & Quilis, V., "ASOHF: a new adaptive spherical overdensity halo finder", [A&A 519 A94](https://www.aanda.org/articles/aa/full_html/2010/11/aa14214-10/aa14214-10.html) (2010) [(arXiv link)](https://arxiv.org/abs/1006.3205)
-- Vallés-Pérez, D., Planelles, S. & Quilis, V., "The halo finding problem revisited: a deep revision of the ASOHF code", A&A submitted (2022) (arXiv link)
+- Planelles, S. & Quilis, V., "ASOHF: a new adaptive spherical overdensity halo finder", [A&A 519 A94](https://www.aanda.org/articles/aa/full_html/2010/11/aa14214-10/aa14214-10.html) (2010). [(arXiv link)](https://arxiv.org/abs/1006.3205)
+- Vallés-Pérez, D., Planelles, S. & Quilis, V., "The halo finding problem revisited: a deep revision of the ASOHF code", A&A submitted (2022). (arXiv link)
