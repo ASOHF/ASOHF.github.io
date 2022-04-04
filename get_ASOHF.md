@@ -21,19 +21,19 @@ git clone https://github.com/dvallesp/ASOHF
 This will create an ASOHF folder in your working directory, inside of which you fill find:
 
 - The source code of ASOHF.
-- An `input_files` folder, which contains the compilation and the runtime parameters files.
-- An `output_files` folder, where the catalogues will be saved.
+- An `./input_files` folder, which contains the compilation and the runtime parameters files.
+- An `./output_files` folder, where the catalogues will be saved.
 
 ### Folder structure
 
-Besides the folders described above, the code also requires you to create a `simulation` folder, which can be a symlink to the folder containing your simulation results.
+Besides the folders described above, the code also requires you to create a `./simulation` folder, which can be a symlink to the folder containing your simulation results.
 
 ```bash 
 ln -s /path/to/your/simulation ./simulation
 ```
 #### MASCLET users:
 
-Note that, if using the MASCLET native reader (```FLAG_MASCLET=1```, see [the section on input data](input_data)), the corresponding folder is `simu_masclet`.
+Note that, if using the MASCLET native reader (```FLAG_MASCLET=1```, see [the section on input data](input_data)), the corresponding folder is `./simu_masclet`.
 
 ### Compilation
 
@@ -46,7 +46,7 @@ gfortran -O3 -march=native -fopenmp -mcmodel=medium -funroll-all-loops -fprefetc
 
 #### Intel:
 ```bash
-ifort -O3 -mcmodel=medium -qopenmp -shared-intel -fp-model consistent -ipo -xHost asohf.f -o asohf_sa.x
+ifort -O3 -mcmodel=medium -qopenmp -shared-intel -fp-model consistent -ipo -xHost asohf.f -o asohf.x
 ```
 
 ### Running
