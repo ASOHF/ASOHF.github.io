@@ -35,16 +35,19 @@ Hubble constant (h), omega matter, fraction of DM to total mass ------>
 0.678,0.31,0.845
 ```
 - The Hubble dimensionless constant (<img src="https://render.githubusercontent.com/render/math?math=h\equiv H_0/(100\,\mathrm{km}\,\mathrm{s}^{-1}\,\mathrm{Mpc}^{-1})">), the matter density parameter (<img src="https://render.githubusercontent.com/render/math?math=\Omega_m=\rho_B(z=0)/\rho_\mathrm{crit}(z=0)">) and the fraction of DM to total mass (<img src="https://render.githubusercontent.com/render/math?math=f_\mathrm{DM}\equiv 1 - \Omega_b / \Omega_m">).
+
 ```
 Max box sidelength (in input length units) --------------------------->
 40.0
 ```
 - The largest of the box side lengths, in the input length units.
+
 ```
 Parallel(=1),serial(=0) / Number of processors ----------------------->
 1,24
 ```
 - Either ASOHF is run in serial mode (=0) or in parallel (=1) and the number of processors used.
+
 ```
 Reading flags: IS_MASCLET (=0, no; =1, yes), MASCLET_GRID ------------>
 1,0
@@ -52,6 +55,7 @@ Reading flags: IS_MASCLET (=0, no; =1, yes), MASCLET_GRID ------------>
 - If reading data from MASCLET, set the first parameter to 1
    - If using MASCLET grid (not recommended), set the second parameter to 1; if building the grid from the particle distribution (recommended), set it to 0.
 - If input data is not from MASCLET, set both parameters to 0.
+
 ```
 Output flags: grid_asohf,density,haloes_grids,subs_grids,subs_part --->
 0,0,0,0,0
@@ -62,6 +66,7 @@ Output flags: grid_asohf,density,haloes_grids,subs_grids,subs_part --->
     - List of haloes pre-identified within the grid
     - List of subhaloes pre-identified within the grid 
     - List of substructures identified using particles
+
 ```
 Input units: MASS (Msun; <0 for Msun/h), LENGTH (cMpc; <0 for cMpc/h),
  SPEED (km/s), ALPHA (v_input = a^alpha dx/dt; 1 is peculiar vel.) --->
@@ -74,6 +79,7 @@ Input units: MASS (Msun; <0 for Msun/h), LENGTH (cMpc; <0 for cMpc/h),
     - Since different codes use different velocity variables, specify the exponent <img src="https://render.githubusercontent.com/render/math?math=\alpha"> such that <img src="https://render.githubusercontent.com/render/math?math=\mathbf{v}_\mathrm{input} = a(t)^\alpha \frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}">, with a(t) the scale factor of the given cosmology and x the comoving position. For example, with <img src="https://render.githubusercontent.com/render/math?math=\alpha=1">, the input velocity is the usual peculiar velocity.
 #### MASCLET users:
 This line can be ignored, as the reader will automatically take care of MASCLET units.
+
 ```
 Input domain (in input length units; x1,x2,y1,y2,z1,z2) -------------->
 -20.0,20.0,-20.0,20.0,-20.0,20.0
@@ -86,11 +92,13 @@ Input domain (in input length units; x1,x2,y1,y2,z1,z2) -------------->
 Keep only particles inside a given domain (=0, no; =1, yes) ---------->
 0
 ```
+- Set this parameter to 1 if you want to analyse only particles inside a given subdomain.
+
 ```
 Domain to keep particles (in input length units; x1,x2,y1,y2,z1,z2) -->
 0.,0.,0.,0.,0.,0.
 ```
-
+- If the above parameter is set to 1, specify the volume where you want to keep the particles.
 
 ### Mesh creation parameters block
 
