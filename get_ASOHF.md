@@ -37,7 +37,7 @@ Note that, if using the MASCLET native reader (```FLAG_MASCLET=1```, see [the se
 
 ### Compilation-time parameters
 
-Before compiling, it is required to set some compilation-time parameters, which are related to dimensioning of arrays. This parameters are included in the `./input_files/asohf_parameters.dat` file, and are explained one by one below.
+Before compiling, it is required to set some compilation-time parameters, which are related to dimensioning of arrays. These parameters are included in the `./input_files/asohf_parameters.dat` file, and are explained one by one below. Each time you change the parameters, you need to [recompile the code](#compilation).
 
 ```fortran 
 ! Level 0 grid 
@@ -48,8 +48,8 @@ PARAMETER (NMAX=128,NMAY=128,NMAZ=128)
   
 ```fortran 
 ! Refinements 
-       INTEGER NPALEV,NLEVELS
-       PARAMETER (NPALEV=10000,NLEVELS=4) 
+INTEGER NPALEV,NLEVELS
+PARAMETER (NPALEV=10000,NLEVELS=4) 
 ```
 - `NPALEV` is the maximum number of AMR patches. This quantity may vary significant depending on your specific user case, so it is advised to run the code with a large value (e.g. `NPALEV=50000`). If it is too small (i.e., when running the code, the maximum number of patches is reached), the code will stop with an error message. If it is too generous, you can consider lowering it to save memory.
 - `NLEVELS` is the maximum number of refinement levels. Take into account that your resolution will be <img src="https://render.githubusercontent.com/render/math?math=L/(N_x \cdot 2^\mathrm{NLEVELS})">, with <img src="https://render.githubusercontent.com/render/math?math=L, \, N_x"> the domain length and the number of grid cells. A typical suggestion is to set it to the force resolution of the simulation, since you are not expected to form structures below this scale.
