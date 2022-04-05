@@ -50,11 +50,12 @@ Parallel(=1),serial(=0) / Number of processors ----------------------->
 
 ```
 Reading flags: IS_MASCLET (=0, no; =1, yes), MASCLET_GRID ------------>
-1,0
+0,0
 ```
+- Generally, set these two parameters to 0.
+#### MASCLET users
 - If reading data from MASCLET, set the first parameter to 1
    - If using MASCLET grid (not recommended), set the second parameter to 1; if building the grid from the particle distribution (recommended), set it to 0.
-- If input data is not from MASCLET, set both parameters to 0.
 
 ```
 Output flags: grid_asohf,density,haloes_grids,subs_grids,subs_part --->
