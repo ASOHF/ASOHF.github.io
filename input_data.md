@@ -37,6 +37,8 @@ If there are stars in the simulation (and it is so indicated in the parameters f
 
 The units of length, velocity and mass can be freely specified by the user (see [the section on parameters](set_parameters)).
 
+If your input data uses double precision reals, please change the `REAL*4 UBAS(0:PARTI_READ)` line in `READ_PARTICLES_GENERAL` to `REAL*8 UBAS(0:PARTI_READ)`. If you use over 2^31 particles, please compile with `-fdefault-integer-8`.
+
 #### MASCLET users:
 
 When using ASOHF coupled to MASCLET, take into account the MASCLET version and the flavour of the simulation to adapt the reader format (`gridsXXXXX` and `cldmXXXXX` files). 
