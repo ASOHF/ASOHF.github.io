@@ -22,7 +22,7 @@ Files: first, last, every -------------------------------------------->
 Cells per direction (NX,NY,NZ) --------------------------------------->
 128,128,128
 ```
-- Number of grid cells in each direction. These grid sizes should be smaller or equal than the [compilation parameters `NMAY`, `NMAZ` and `NMAX`](get_ASOHF#compilation-time-parameters).
+- Number of grid cells in each direction. These grid sizes should be smaller or equal than the [compilation parameters `NMAX`, `NMAY` and `NMAZ`](get_ASOHF#compilation-time-parameters).
 
 ```
 DM particles (all levels) -------------------------------------------->
@@ -53,9 +53,9 @@ Reading flags: IS_MASCLET (=0, no; =1, yes), MASCLET_GRID ------------>
 0,0
 ```
 - Generally, set these two parameters to 0.
-#### MASCLET users
-- If reading data from MASCLET, set the first parameter to 1
-   - If using MASCLET grid (not recommended), set the second parameter to 1; if building the grid from the particle distribution (recommended), set it to 0.
+>#### MASCLET users
+>- If reading data from MASCLET, set the first parameter to 1
+>   - If using MASCLET grid (not recommended), set the second parameter to 1; if building the grid from the particle distribution (recommended), set it to 0.
 
 ```
 Output flags: grid_asohf,density,haloes_grids,subs_grids,subs_part --->
@@ -78,8 +78,8 @@ Input units: MASS (Msun; <0 for Msun/h), LENGTH (cMpc; <0 for cMpc/h),
     - Input unit of length in comoving Mpc; if negative, the input length is assumed to be given in cMpc/h.
     - Input unit of speed in km/s.
     - Since different codes use different velocity variables, specify the exponent <img src="https://render.githubusercontent.com/render/math?math=\alpha"> such that <img src="https://render.githubusercontent.com/render/math?math=\mathbf{v}_\mathrm{input} = a(t)^\alpha \frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}">, with a(t) the scale factor of the given cosmology and x the comoving position. For example, with <img src="https://render.githubusercontent.com/render/math?math=\alpha=1">, the input velocity is the usual peculiar velocity.
-#### MASCLET users:
-This line can be ignored, as the reader will automatically take care of MASCLET units.
+>#### MASCLET users:
+>This line can be ignored, as the reader will automatically take care of MASCLET units.
 
 ```
 Input domain (in input length units; x1,x2,y1,y2,z1,z2) -------------->
