@@ -49,7 +49,7 @@ You can alter the reader format by creating a custom subroutine in the `reader.f
 
 In any case, leave the unit conversion loop unaltered, 
 
-```f90
+```fortran
 DO I=1,N_DM+N_ST
     RXPA(I)=(RXPA(I)-CIO_XC)*FACT_LENGTH
     RYPA(I)=(RYPA(I)-CIO_YC)*FACT_LENGTH
