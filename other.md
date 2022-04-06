@@ -52,4 +52,84 @@ The code will read the outputs of all domains, and will unify the catalogues of 
 
 ### Merger tree
 
+We also include a python code, `./tools/mtree.py` to build the merger tree from ASOHF outputs.
 
+> Note: for using the merger tree, you will need to install the package [`sortednp`](https://pypi.org/project/sortednp/). This can be easily done by
+> ```python
+> pip install sortednp
+> ```
+
+Running this script requires a minimal configuration from the user:
+
+1. Set the parameters:
+   - Set the path to the folder containing the outputs of ASOHF, and the path to the folter containing the simulation results.
+   ```python
+   outputs_ASOHF='output_files/'
+   simulation_results='simu_masclet/'
+   ```
+   - Set the first iteration to analyse, the last iteration to analyse and the interval between iterations.
+   ```python
+   itini=100
+   itfin=1550
+   every=50
+   ```
+   - Set the value of the density parameters and the Hubble parameter used in the simulation.
+   ```python
+   h=0.6711
+   omegam=0.3026
+   omegalambda=1-omegam
+   ```
+
+   - Running the merger tree in parallel: set the number of threads to be used for the distance computation (first step of the merger tree), and for the intersection of the particle lists (second steps). The former can be set as high as you wish, while the latter must be kept reasonably low since `sortednp` can use quite a lot of memory.
+   ```python
+   ncores_distance=20
+   ncores_intersect=4
+   ```
+
+   - Set the lower threshold of _given mass_. Only the progenitor haloes giving the child halo more than this fraction of its mass will be reported in the merger tree.
+   ```python
+   min_given_mass = 0.001 
+   ```
+
+   - Looking for further snapshots: it the parameter is set to `True`, the merger tree code will identify those haloes which have not been linked to any halo in the immediately previous snapshot, and will try to link it to haloes in snapshots further backwards in time. The `max_iterations_back` parameter sets the maximum number of snapshots that the code is allowed to go back.
+   ```python 
+   look_further_iterations = True
+   max_iterations_back = 2 # set it to a very large number to go always until the first iteration
+   ```
+
+2. Write a function that relates each DM particle unique ID to its mass, by creating a dictionary whose keys are the IDs and whose values are the masses. An example is given below for `MASCLET`, but you should implement yours for your simulation.
+
+```python
+def IDs_to_masses(it, folder_simu):
+    from masclet_framework.read_masclet import read_cldm
+    from masclet_framework.units import mass_to_sun as munit
+    mdm,oripa = read_cldm(it, path=folder_simu, output_deltadm=False, output_position=False, output_velocity=False,output_mass=True, output_id=True)
+    # fix IDs from MASCLET to be unique
+    oripa[mdm>mdm.max()/2]=-np.abs(oripa[mdm>mdm.max()/2])
+    return {partid: mi for mi,partid in zip(mdm*munit,oripa)}
+```
+
+3. The script uses [tqdm](https://github.com/tqdm/tqdm) to display a progress bar. If you do not have `tqdm` installed and do not wish to install it, you can comment out the line `from tqdm import tqdm` and uncomment the line after it: 
+```python 
+def tqdm(x): return x
+```
+
+Then you can just run the `mtree.py` script from your favourite `python3` interpreter.
+
+The outputs will consist on files with the denomination `mtree_XXXXX_YYYYY.json` in your `./output_files` folder, where `XXXXX` is the _previous_ iteration and `YYYYY` is the _posterior_ iteration. This is a `json` structured file, which can be easily read into python by:
+
+```python
+import json
+with open('output_files/mtree_00100_00150.json', 'r') as f:
+    data = json.load(f)
+```
+
+This will automatically load a dictionary. The keys are the IDs of the haloes in the _posterior_ iteration. The values are a list of dictionaries, each of these dictionaries corresponding to a progenitor halo. These dictionaries contain the halo ID, the fraction of progenitor mass given to the child, the fraction of the child mass which comes from this progenitor, amongst other data. Additionaly, the dictionary contains a key name `containsMostBound`, which is `True` if the most-bound particle of the progenitor is in the descendant halo and viceversa. This is the criterion we use to identify the main progenitor of each halo.
+
+> NOTE: (which you may need to convert the keys from strings to integers, by running 
+>
+>```python
+>data = {int(k): v for k, v in data.items()}
+>``` 
+
+If the main progenitor of a halo has not been found in the immediately previous snapshot, but it is found in some further one, you will find it in the file connecting these two iterations. For example, it the progenitor of a halo in the iteration 10 is not found in the iteration 9, but it is in the iteration 8, you might find it in the file `mtree_8_10.json` file.
