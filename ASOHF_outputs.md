@@ -39,7 +39,13 @@ Stellar halo catalogues are stored in a simple text file, with one line per stel
 
 ### The particles files (`particlesXXXXX` and `stellar_particlesXXXXX`)
 
-Particle lists are written as a Fortran unformatted file. The format is as follows, record by record:
+Particle lists are written as a Fortran unformatted file. For reading them with python, we use the [Cython Fortran File package](https://pypi.org/project/cython-fortran-file/), which you can install with a simple
+
+```bash 
+pip install cython-fortran-file
+```
+
+The format is as follows, record by record:
 
 - An integer containing the number of haloes
 - A look-up table of haloes, with one record per halo, each of which contains:
