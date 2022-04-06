@@ -2,6 +2,7 @@
 layout: default
 title: Outputs structure
 nav_order: 5
+last_modified_at:
 ---
 
 ## ASOHF outputs
