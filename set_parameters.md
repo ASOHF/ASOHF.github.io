@@ -173,6 +173,7 @@ Particle especies (0=there are different mass particles, 1=equal mass
     - If 1, ASOHF computes the kernel size from a pre-estimation of the density field on the base grid. Particles in a cell with density <img src="https://render.githubusercontent.com/render/math?math=\rho"> will get a cloud equivalent to the refinement level <img src="https://render.githubusercontent.com/render/math?math=\lfloor \log_8 (\rho/\rho_B) \rfloor)"> (bounded by 0 and `N_ESP`-1).
 
 ### Halo finding parameters block
+These parameters control the halo finding process.
 
 ```
 Max. reach around halos (cMpc), excluded cells in boundaries --------->
@@ -213,6 +214,7 @@ Minimum number of particles per halo --------------------------------->
 - Haloes with less than this number of particles are regarded as 'poor' haloes and discarded.
 
 ### Stellar halo finding parameters block
+These parameters control the stellar halo finding process. All can be ignored if the first one (whether to look for stellar haloes) is set to 0.
 
 ```
 Look for stellar haloes (=1 yes, =0 no) ------------------------------>

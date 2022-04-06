@@ -5,6 +5,7 @@ nav_order: 5
 ---
 
 ## ASOHF outputs
+Here, we describe the basic structure of ASOHF outputs.
 
 ### The halo catalogue
 
