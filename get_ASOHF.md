@@ -2,7 +2,7 @@
 layout: default
 title: Getting ASOHF
 nav_order: 2
-last_modified_at: 2022-04-06T13:37:11
+last_modified_at: 2022-04-12T11:08:56
 ---
 
 ## Getting ASOHF
@@ -109,7 +109,7 @@ gfortran -O3 -march=native -fopenmp -mcmodel=medium -funroll-all-loops -fprefetc
 
 #### Intel:
 ```bash
-ifort -O3 -mcmodel=medium -qopenmp -shared-intel -fp-model consistent -ipo -xHost asohf.f -o asohf.x
+ifort -O3 -mcmodel=medium -qopenmp -shared-intel -fp-model consistent -ipo -xHost particles.f asohf.f -o asohf.x
 ```
 
 ### Running
