@@ -112,6 +112,11 @@ gfortran -O3 -march=native -fopenmp -mcmodel=medium -funroll-all-loops -fprefetc
 ifort -O3 -mcmodel=medium -qopenmp -shared-intel -fp-model consistent -ipo -xHost particles.f asohf.f -o asohf.x
 ```
 
+#### macOS and the stack size:
+macOS system have a limitation of the maximum stack size that can be granted to a process, regardless of what the user specifies with the `OMP_STACKSIZE` environment variable or the `ulimit` command. ASOHF makes use of the stack, rather than the heap, by passing several large arrays as parameters to subroutines rather than using `COMMON` blocks, since it provides faster access. However, this may cause instantaneous failure of the code with Apple systems running macOS.
+
+To circumvent this, please use the `-Wl,-stack_size,0x80000000` flag in your compilation command to set the stack size to 2GB, which should be enough even for large simulations. 
+
 ### Running
 
 For running ASOHF, you may want to use a shell script containing all the necessary environment variables. An example is served below:
