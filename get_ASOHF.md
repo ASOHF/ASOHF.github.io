@@ -96,7 +96,7 @@ PARAMETER (NBINS=20)
 INTEGER N_ESP
 PARAMETER (N_ESP=4)
 ```
-- `N_ESP` is the number of DM species. If your simulation contains different mass particles, you can set this variable to the number of different species. If you want to treat to use a kernel size based on local density, or a single kernel for all particles, you can set it to your desired number of especies. 
+- `N_ESP` is the number of DM species. If your simulation contains different mass particles, you can set this variable to the number of different species. If you want to treat to use a kernel size based on local density, or a single kernel for all particles, you can set it to your desired number of especies. Note the smallest kernel size will therefore be <img src="https://render.githubusercontent.com/render/math?math=L/(N_x \cdot 2^\mathrm{N_ESP - 1})">
 
 ### Compilation
 
