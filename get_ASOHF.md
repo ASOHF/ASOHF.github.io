@@ -23,7 +23,7 @@ This will create an ASOHF folder in your working directory, inside of which you 
 
 - The source code of ASOHF.
 - An `./input_files` folder, which contains the compilation and the runtime parameters files.
-- An `./output_files` folder, where the catalogues will be saved.
+- An `./output_files` folder, where the catalogues and any other output files will be saved.
 
 ### Folder structure
 
@@ -45,7 +45,7 @@ Before compiling, it is required to set some compilation-time parameters, which 
 INTEGER NMAX,NMAY,NMAZ
 PARAMETER (NMAX=128,NMAY=128,NMAZ=128)
 ```
-- `NMAX`, `NMAY` and `NMAZ` are the number of grid cells in each direction, in order to dimension the density arrays (must be larger or equal to the actual grid size used, specified in `./input_files/asohf.dat`; see [the parameters file page](set_parameters.md)).
+- `NMAX`, `NMAY` and `NMAZ` are the (maximum) number of base grid cells in each direction. They are used in order to dimension the density arrays (must be larger or equal to the actual grid size used, specified in `./input_files/asohf.dat`; see [the parameters file page](set_parameters.md)).
   
 ```fortran 
 ! Refinements 
@@ -53,7 +53,7 @@ INTEGER NPALEV,NLEVELS
 PARAMETER (NPALEV=10000,NLEVELS=4) 
 ```
 - `NPALEV` is the maximum number of AMR patches. This quantity may vary significant depending on your specific user case, so it is advised to run the code with a large value (e.g. `NPALEV=50000`). If it is too small (i.e., when running the code, the maximum number of patches is reached), the code will stop with an error message. If it is too generous, you can consider lowering it to save memory.
-- `NLEVELS` is the maximum number of refinement levels. Take into account that your resolution will be <img src="https://render.githubusercontent.com/render/math?math=L/(N_x \cdot 2^\mathrm{NLEVELS})">, with <img src="https://render.githubusercontent.com/render/math?math=L, \, N_x"> the domain length and the number of grid cells. A typical suggestion is to set it to the force resolution of the simulation, since you are not expected to form structures below this scale.
+- `NLEVELS` is the maximum number of refinement levels. Take into account that your best resolution to identify density peaks will be <img src="https://render.githubusercontent.com/render/math?math=L/(N_x \cdot 2^\mathrm{NLEVELS})">, with <img src="https://render.githubusercontent.com/render/math?math=L, \, N_x"> the domain length and the number of grid cells. A typical suggestion is to set `NLEVELS` to match the force resolution of the simulation, since you are not expected to form structures below this scale.
 
 ```fortran 
 ! Maximum patch extension 
@@ -96,7 +96,7 @@ PARAMETER (NBINS=20)
 INTEGER N_ESP
 PARAMETER (N_ESP=4)
 ```
-- `N_ESP` is the number of DM species. If your simulation contains different mass particles, you can set this variable to the number of different species. If you want to treat to use a kernel size based on local density, or a single kernel for all particles, you can set it to your desired number of especies. Note the smallest kernel size will therefore be <img src="https://render.githubusercontent.com/render/math?math=L/(N_x \cdot 2^\mathrm{N_ESP - 1})">
+- `N_ESP` is the number of particle species. If your simulation contains DM particles of different mass (different species of DM particles), you can set this variable to the number of different species. If you want to treat to use a kernel size based on local density, or a single kernel for all particles, you can set it to your desired number of especies. Note the smallest kernel size will therefore be <img src="https://render.githubusercontent.com/render/math?math=L/(N_x \cdot 2^\mathrm{N_ESP - 1})">.
 
 ### Compilation
 

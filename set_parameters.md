@@ -25,11 +25,6 @@ Cells per direction (NX,NY,NZ) --------------------------------------->
 ```
 - Number of grid cells in each direction. These grid sizes should be smaller or equal than the [compilation parameters `NMAX`, `NMAY` and `NMAZ`](get_ASOHF#compilation-time-parameters).
 
-```
-DM particles (all levels) -------------------------------------------->
-2097152
-```
-- Number of DM particles in the simulation. This number should be smaller than the [compilation parameter `PARTI_READ`](get_ASOHF#compilation-time-parameters).
 
 ```
 Hubble constant (h), omega matter, fraction of DM to total mass ------>
@@ -44,19 +39,14 @@ Max box sidelength (in input length units) --------------------------->
 - The largest of the box side lengths, in the input length units.
 
 ```
-Parallel(=1),serial(=0) / Number of processors ----------------------->
-1,24
-```
-- Either ASOHF is run in serial mode (=0) or in parallel (=1) and the number of processors used.
-
-```
-Reading flags: IS_MASCLET (=0, no; =1, yes), MASCLET_GRID ------------>
+Reading flags: IS_MASCLET (=0, no; =1, yes), GENERIC_READER (see docs) ----->
 0,0
 ```
-- Generally, set these two parameters to 0.
+- Generally, set the first parameter to 0. As for the second:
+  - `GENERIC_READER=0` for the generic `particlesXXXXX` files described in the [input data page](input_data).
+  - `GENERIC_READER=1` for the GADGET-2 unformatted files reader.
 >#### MASCLET users
 >- If reading data from MASCLET, set the first parameter to 1
->   - If using MASCLET grid (not recommended), set the second parameter to 1; if building the grid from the particle distribution (recommended), set it to 0.
 
 ```
 Output flags: grid_asohf,density,haloes_grids,subs_grids,subs_part --->
@@ -141,7 +131,7 @@ Base grid refinement border, AMR grids refinement border ------------->
 - Likewise, the second parameter is the number of cells close to each AMR patch boundary to exclude from further refinement. It can be safely set to 0 if you accept that a patch can share a face, edge or corner with its father (which is not problematic).
 
 ```
-Allow for addition overlap (to avoid losing signal) in the mesh ------>
+Allow for additional overlap (to avoid losing signal) in the mesh ---->
 0
 ```
 - If this parameter is set to 1, the cells in the boundary of a patch will not be considered refined, so as to try to place another patch covering them so that they are in a more central position. Generally it is not required, but it may rarely happen that some small halo is lost due to its density peak being too close to the boundary of the patch. 
@@ -172,6 +162,7 @@ Particle especies (0=there are different mass particles, 1=equal mass
 - How to set the kernel size for each particle:
     - If 0, ASOHF assumes DM particles have different masses, and each particle will get a cloud representing its original size back in the initial conditions.
     - If 1, ASOHF computes the kernel size from a pre-estimation of the density field on the base grid. Particles in a cell with density <img src="https://render.githubusercontent.com/render/math?math=\rho"> will get a cloud equivalent to the refinement level <img src="https://render.githubusercontent.com/render/math?math=\lfloor \log_8 (\rho/\rho_B) \rfloor)"> (bounded by 0 and `N_ESP`-1).
+    - If 2, ASOHF assumes that all particles have the same mass, and therefore the kernel size is the same for all of them.
 
 ### Halo finding parameters block
 These parameters control the halo finding process.
@@ -246,3 +237,9 @@ Cut stellar halo if rho_* falls below this factor of rho_B ----------->
 1.0
 ```
 - Consider a maximum radius for the stellar halo if the density of the stars falls below this factor of the density of the background.
+```
+Cut stellar halo at a maximum (>0, physical; <0, comoving) radius of
+ (kpc) --------------------------------------------------------------->
+ 200.0
+```
+- Consider a maximum radius for the stellar halo. This might be useful to identify BCGs and separate them from the rest of the ICL. If positive, it is interpreted as a physical radius (in kpc). If negative, it is interpreted as a comoving radius (in ckpc).
