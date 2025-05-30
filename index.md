@@ -17,7 +17,7 @@ See the code repository for downloading the code:
 
 ### What is in these pages?
 
-These pages contain the documentation of the code, including the input/output formats and a description on the parameters that can be tuned to run ASOHF. For the scientific description of the code, please refer to the code papers (see below, in [Referencing ASOHF](#referencing-asohf))
+These pages contain the documentation of the code, including the input/output formats and a description on the parameters that can be tuned to run ASOHF. For the scientific description of the code, please refer to the code papers (see below, in [Referencing ASOHF](#referencing-asohf)).
 
 ## About
 

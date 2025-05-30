@@ -30,23 +30,13 @@ Cells per direction (NX,NY,NZ) --------------------------------------->
 Hubble constant (h), omega matter, fraction of DM to total mass ------>
 0.678,0.31,0.845
 ```
-- The Hubble dimensionless constant (<img src="https://render.githubusercontent.com/render/math?math=h\equiv H_0/(100\,\mathrm{km}\,\mathrm{s}^{-1}\,\mathrm{Mpc}^{-1})">), the matter density parameter (<img src="https://render.githubusercontent.com/render/math?math=\Omega_m=\rho_B(z=0)/\rho_\mathrm{crit}(z=0)">) and the fraction of DM to total mass (<img src="https://render.githubusercontent.com/render/math?math=f_\mathrm{DM}\equiv 1 - \Omega_b / \Omega_m">).
+- The Hubble dimensionless constant ($h\equiv H_0/(100\,\mathrm{km}\,\mathrm{s}^{-1}\,\mathrm{Mpc}^{-1})$, the matter density parameter ($\Omega_m=\rho_B(z=0)/\rho_\mathrm{crit}(z=0)$) and the fraction of DM to total mass ($f_\mathrm{DM}\equiv 1 - \Omega_b / \Omega_m$).
 
 ```
 Max box sidelength (in input length units) --------------------------->
 40.0
 ```
-- The largest of the box side lengths, in the input length units.
-
-```
-Reading flags: IS_MASCLET (=0, no; =1, yes), GENERIC_READER (see docs) ----->
-0,0
-```
-- Generally, set the first parameter to 0. As for the second:
-  - `GENERIC_READER=0` for the generic `particlesXXXXX` files described in the [input data page](input_data).
-  - `GENERIC_READER=1` for the GADGET-2 unformatted files reader.
->#### MASCLET users
->- If reading data from MASCLET, set the first parameter to 1
+- The largest of the box side lengths, in the input length units. If using domain decomposition or restricting a subdomain, this is the sidelength of the original box.
 
 ```
 Output flags: grid_asohf,density,haloes_grids,subs_grids,subs_part --->
@@ -68,7 +58,7 @@ Input units: MASS (Msun; <0 for Msun/h), LENGTH (cMpc; <0 for cMpc/h),
     - Input unit of mass in solar masses; if negative, the input mass is assumed to be given in Msun/h.
     - Input unit of length in comoving Mpc; if negative, the input length is assumed to be given in cMpc/h.
     - Input unit of speed in km/s.
-    - Since different codes use different velocity variables, specify the exponent <img src="https://render.githubusercontent.com/render/math?math=\alpha"> such that <img src="https://render.githubusercontent.com/render/math?math=\mathbf{v}_\mathrm{input} = a(t)^\alpha \frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}">, with a(t) the scale factor of the given cosmology and x the comoving position. For example, with <img src="https://render.githubusercontent.com/render/math?math=\alpha=1">, the input velocity is the usual peculiar velocity.
+    - Since different codes use different velocity variables, specify the exponent $\alpha$ such that $\mathbf{v}_\mathrm{input} = a(t)^\alpha \frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}$, with $a(t)$ the scale factor of the given cosmology and $x$ the comoving position. For example, with $\alpha=1$, the input velocity is the usual peculiar velocity.
 >#### MASCLET users:
 >This line can be ignored, as the reader will automatically take care of MASCLET units.
 
@@ -243,3 +233,12 @@ Cut stellar halo at a maximum (>0, physical; <0, comoving) radius of
  200.0
 ```
 - Consider a maximum radius for the stellar halo. This might be useful to identify BCGs and separate them from the rest of the ICL. If positive, it is interpreted as a physical radius (in kpc). If negative, it is interpreted as a comoving radius (in ckpc).
+
+### Postfix (only `READER=3`) block
+
+```
+Input ifle postfix (leave blank line if none) ------------------------>
+_beautiful.hdf5
+```
+
+- If you are using the `READER=3` (HDF5) reader, you can specify a postfix to the input file name. If blank, the input file is assumed to be `./simulation/snap_XXX`. In the example above, the input file is assumed to be `./simulation/snap_XXX_beautiful.hdf5`.

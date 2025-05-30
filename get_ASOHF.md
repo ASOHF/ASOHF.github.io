@@ -100,17 +100,22 @@ PARAMETER (N_ESP=4)
 
 ### Compilation
 
-ASOHF can be compiled either with the GNU (`gfortran`) or with the Intel (`ifort`) Fortran Compilers. The following compilation options work well for us using gfortran-11 and ifort 2018 on several machines:
+ASOHF can be compiled either with the GNU (`gfortran`) or with the Intel (`ifort`) Fortran Compilers. Now the code package includes a `Makefile` with example solutions for both compilers, together with debugging options. 
 
-#### GNU:
-```bash
-gfortran -O3 -march=native -fopenmp -mcmodel=medium -funroll-all-loops -fprefetch-loop-arrays -mieee-fp -ftree-vectorize particles.f asohf.f -o asohf.x
+```bash 
+make COMP=1 # GNU Fortran Compiler
+make COMP=2 # Intel Fortran Compiler
+make COMP=999 # GNU Fortran Compiler with debugging options
 ```
 
-#### Intel:
-```bash
-ifort -O3 -mcmodel=medium -qopenmp -shared-intel -fp-model consistent -ipo -xHost particles.f asohf.f -o asohf.x
-```
+In addition to the `COMP` option, you must specify a `READER` option, to choose the input data reader. The available options are:
+
+- `READER=0`: general reader, which reads the input data from a file containing the particle positions and masses in a simple format (see [the section on input data](input_data.md)).
+- `READER=1`: MASCLET reader, which reads the input data from the native MASCLET format. 
+- `READER=2`: GADGET unformatted file reader. 
+- `READER=3`: GADGET/GIZMO/Arepo hdf5 reader.
+
+Note that, if you use `READER=3`, you will need to have the [HDF5 library](https://www.hdfgroup.org/solutions/hdf5/) installed in your system, and set the correct include and library paths in the `Makefile`.
 
 #### macOS and the stack size:
 macOS system have a limitation of the maximum stack size that can be granted to a process, regardless of what the user specifies with the `OMP_STACKSIZE` environment variable or the `ulimit` command. ASOHF makes use of the stack, rather than the heap, by passing several large arrays as parameters to subroutines rather than using `COMMON` blocks, since it provides faster access. However, this may cause instantaneous failure of the code with Apple systems running macOS.
