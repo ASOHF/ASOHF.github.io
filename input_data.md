@@ -14,27 +14,27 @@ In this section, we describe the different ways of loading your particle data in
 The general reader (subroutine `READ_PARTICLES_GENERAL` in the `reader.f` source file) assumes the data is contained in the file `./simulation/particlesXXXXX` where `XXXXX` is the iteration number. The file is a binary file with the following format, record by record:
 
 - Redshift of the snapshot (single-precision real)
-- Number of DM particles (integer), <img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{DM}">
-- X position of the DM particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{DM}"> single-precision reals)
-- Y position of the DM particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{DM}"> single-precision reals)
-- Z position of the DM particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{DM}"> single-precision reals)
-- Velocity component X of the DM particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{DM}"> single-precision reals)
-- Velocity component Y of the DM particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{DM}"> single-precision reals)
-- Velocity component Z of the DM particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{DM}"> single-precision reals)
-- Mass of the DM particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{DM}"> single-precision reals)
-- Unique ID of the DM particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{DM}"> integers)
+- Number of DM particles (integer), $N_\mathrm{DM}$
+- X position of the DM particles ($N_\mathrm{DM}$ single-precision reals)
+- Y position of the DM particles ($N_\mathrm{DM}$ single-precision reals)
+- Z position of the DM particles ($N_\mathrm{DM}$ single-precision reals)
+- Velocity component X of the DM particles ($N_\mathrm{DM}$ single-precision reals)
+- Velocity component Y of the DM particles ($N_\mathrm{DM}$ single-precision reals)
+- Velocity component Z of the DM particles ($N_\mathrm{DM}$ single-precision reals)
+- Mass of the DM particles ($N_\mathrm{DM}$ single-precision reals)
+- Unique ID of the DM particles ($N_\mathrm{DM}$ integers)
 
 If there are stars in the simulation (and it is so indicated in the parameters file; see [the section on parameters](set_parameters)), the following data is also read:
 
-- Number of stellar particles (integer), <img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{stellar}">
-- X position of the stellar particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{stellar}"> single-precision reals)
-- Y position of the stellar particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{stellar}"> single-precision reals)
-- Z position of the stellar particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{stellar}"> single-precision reals)
-- Velocity component X of the stellar particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{stellar}"> single-precision reals)
-- Velocity component Y of the stellar particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{stellar}"> single-precision reals)
-- Velocity component Z of the stellar particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{stellar}"> single-precision reals)
-- Mass of the stellar particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{stellar}"> single-precision reals)
-- Unique ID of the stellar particles (<img src="https://render.githubusercontent.com/render/math?math=N_\mathrm{stellar}"> integers)
+- Number of stellar particles (integer), $N_\mathrm{stellar}$
+- X position of the stellar particles ($N_\mathrm{stellar}$ single-precision reals)
+- Y position of the stellar particles ($N_\mathrm{stellar}$ single-precision reals)
+- Z position of the stellar particles ($N_\mathrm{stellar}$ single-precision reals)
+- Velocity component X of the stellar particles ($N_\mathrm{stellar}$ single-precision reals)
+- Velocity component Y of the stellar particles ($N_\mathrm{stellar}$ single-precision reals)
+- Velocity component Z of the stellar particles ($N_\mathrm{stellar}$ single-precision reals)
+- Mass of the stellar particles ($N_\mathrm{stellar}$ single-precision reals)
+- Unique ID of the stellar particles ($N_\mathrm{stellar}$ integers)
 
 The units of length, velocity and mass can be freely specified by the user (see [the section on parameters](set_parameters)).
 
